@@ -493,6 +493,7 @@ section{
     margin : 10px;
 }
 #foreign>.foreign{
+    float : left;
     width : 399px;
     height : 406px;
     border : 1px solid #333;
