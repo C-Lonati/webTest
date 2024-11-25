@@ -487,6 +487,7 @@ section{
     width : max-content;
     border : 1px solid #333;
     height : 426px;
+    float : left;
 }
 #foreign>.foreignCover>img{
     width : 276px;
