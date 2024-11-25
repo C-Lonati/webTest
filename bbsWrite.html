@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 글쓰기</title>
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body id="bbsWrite">
+    <header id="header"></header>
+    <article id="content">
+        <section id="write">
+            <h2>글쓰기</h2>
+            <form method="post">
+                <button>도서선택</button>
+                <div class="writePro">
+                    <img src="images/god.jpg" alt="who? Faker">
+                    <h3>Who? special 페이커</h3>
+                    <div>
+                    <span>카테고리 : </span><span >전문서적</span>
+                    </div>
+                </div>
+                <div class="writePage">
+                    <input type="text" placeholder="제목">
+                    <textarea name="content" placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <div class="buttonBar">
+                    <button type="reset">취소</button>
+                    <button type="submit">임시저장</button>
+                    <button type="submit">등록</button>
+                </div>
+            </form>
+        </section>
+    </article>
+    <footer id="footer"></footer>
+    <script src="script/embed.js"></script>
+    <script src="script/bbsWrite.js"></script>
+</body>
+</html>

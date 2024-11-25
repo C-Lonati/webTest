@@ -1,0 +1,1233 @@
+/*@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Sans+KR&family=Nanum+Gothic&display=swap');
+*{
+    margin : 0;
+    padding : 0;
+}
+body{
+    color : #333;
+    font-size : 16px;
+    font-family: "IBM Plex Sans KR", "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+h2{
+    font-size : 30px;
+    margin-bottom : 30px;
+    font-weight : 700;
+}
+h3{
+    font-size : 22px;
+    font-weight : 700;
+}
+h4{
+    font-size : 20px;
+    color : #39b057;
+    width : max-content;
+    display :inline-block;
+}
+ul{
+    list-style : none;
+}
+a{
+    text-decoration : none;
+    color : inherit;
+}
+img{
+    vertical-align : top;
+}
+#modal{
+    z-index : 998;
+    background : rgba(0,0,0,0.5);
+    position : fixed;
+    width : 100%;
+    height : 100%;
+    top : 0;
+    left : 0;
+    display : none;
+}
+#loginForm, #registerForm{
+    position : fixed;
+    z-index : 999;
+    background : white;
+    width : 40%;
+    min-width : 300px;
+    height : 600px;
+    left : 30%;
+    top : 160px;
+    border-radius : 20px;
+    display : none;
+}
+#registerForm{
+    z-index : 1000;
+}
+#loginForm>form, #registerForm>form{
+    width : 300px;
+    margin : 50px auto 0;
+    overflow : hidden;
+}
+form>.logo{
+    height : 100px;
+    text-align : center;
+    margin-bottom : 10px;
+}
+form>.logo img{
+    height : 100%;
+}
+form .underLine{
+    padding : 10px 0 0;
+    margin : 0;
+}
+#loginForm>form label, #registerForm>form label{
+    display : none;
+}
+#loginForm>form input, #registerForm>form input{
+    outline-style : none;
+    border : none;
+    /*background : #d9d9d9;*/
+    padding : 15px;
+    border-radius: 10px;
+    width : 280px;
+    font-size : 18px;
+}
+#loginForm button{
+    margin-top : 40px;
+}
+#loginForm .loginHelp{
+    margin-top : 30px;
+}
+#loginForm .loginHelp>a{
+    padding : 0 10px;
+    border-right : 1px solid #ccc;
+}
+#loginForm .loginHelp>a:last-child{
+    border : none;
+}
+#loginForm .loginSns{
+    text-align: center;
+    margin-top : 60px;
+}
+#loginForm .loginSns .circle{
+    display : inline-block;
+    width : 50px;
+    height : 50px;
+    text-align: center;
+    margin-right : 15px;
+    cursor: pointer;
+}
+#loginForm .circle:last-child{
+    margin : 0;
+}
+#loginForm .loginSns img{
+    height : 50px;
+}
+#registerForm button, #loginForm button{
+    float : left;
+    width : 300px;
+    border-radius : 10px;
+    background : #a77523;
+    border : none;
+    color : white;
+    height : 40px;
+    margin-bottom : 20px;
+    cursor: pointer;
+}
+#registerForm .formInfo{
+    padding : 15px 0;
+}
+#registerForm .login{
+    color : #d4a373;
+}
+#upBtn{
+    z-index : 997;
+    border-radius: 50%;
+    width : 60px;
+    line-height : 60px;
+    border : none;
+    position : fixed;
+    right : 10%;
+    bottom : 200px;
+    cursor : pointer;
+    text-align: center;
+    display: none;
+    background : white;
+}
+#leftBtn>img{
+    width : 50px!important;
+    height : 50px;
+}
+#rightBtn>img{
+    width : 50px!important;
+    height : 50px;
+}
+#rightBtn, #leftBtn{
+    border-radius: 50%;
+    width : 50px;
+    height : 50px;
+    text-align : center;
+    position : absolute;
+    top : 190px;
+}
+#header{
+    width : 100%;
+    position : fixed;
+    top : 0;
+    left : 0;
+    z-index : 996;
+    background : white;
+}
+.headerMain{
+    width : 1200px;
+    margin : 0 auto;
+    overflow : hidden;
+}
+.headerMain img{
+    height : 80px;
+    padding : 15px;
+    margin-left : 40px;
+    float : left;
+}
+.headerMain form{
+    width : 500px;
+    margin : 30px auto 0;
+    border-bottom : 1px solid #a77523;
+    height : 50px;
+}
+.headerMain form input{
+    height : 40px;
+    border : none;
+    outline-style: none;
+}
+.headerMain form input[type="image"]{
+    width : 30px;
+    float : right;
+    margin-right : 10px;
+}
+.headerMain form input:first-of-type{
+    width : 400px;
+    margin-left : 5px;
+}
+.headerMain form button{
+    width : 50px;
+    margin-left : 35px;
+    cursor: pointer;
+}
+.headerMain>ul{
+    float : right;
+}
+.headerMain>ul>li{
+    float : left;
+    padding : 30px 10px;
+    line-height : 50px;
+    font-size : 14px;
+    color : #a77523;
+}
+.headerMain>ul>li>a{
+    display : block;
+}
+.login, .register{
+    cursor: pointer;
+    padding : 0 10px;
+}
+
+#header nav{
+    width : 100%;
+    background : #a77523;
+}
+.gnb{
+    width : 1200px;
+    margin : 0 auto;
+    height : 50px;
+}
+.gnb>li{
+    float : left;
+    color : white;
+    position : relative;
+}
+.gnb>li:nth-child(n+5)>a{
+    float : left;
+    width : 172px;
+}
+.gnb>li:hover>.headerSub{
+    display : block;
+}
+.gnb>li>a{
+    display : block;
+    line-height : 50px;
+    width : 171px;
+    text-align : center;
+}
+.headerSub{
+    position : absolute;
+    top : 50px;
+    left : 0px;
+    width : 1200px;
+    overflow : hidden;
+    display : none;
+}
+.headerSub>li{
+    display : inline;
+    float : left;
+    background : white;
+}
+.headerSub>li:first-child{
+    border-radius: 0 0 0 10px;
+}
+.headerSub>li:last-child{
+    border-radius: 0 0 10px 0;
+}
+.headerSub>li>a{
+    display : block;
+    width : 150px;
+    line-height : 30px;
+    padding : 10px 0;
+    text-align : center;
+    color : #a77523;
+}
+
+footer{
+    height : 100px;
+    clear : both;
+    border-top : 1px solid #ccc;
+}
+footer>.footerLogo{
+    float : left;
+    margin-left : 40px;
+}
+footer>.footerLogo img{
+    height : 50px;
+    padding : 25px 20px;
+}
+footer>.footerInfo{
+    height : 60px;
+    padding : 20px 20px;
+}
+footer>.footerInfo>span{
+    margin-right : 40px;
+    font-size : 14px;
+    display : inline-block;
+    line-height : 30px;
+}
+
+
+
+#content{
+    width : 1200px;
+    margin : 145px auto 120px;
+    padding-top : 100px;
+    overflow: hidden;
+}
+#index>#content{
+    width : 100% !important;
+    padding-top : 0px !important;
+}
+#recommend, #new, #foreign, #writerContent, .bestBook, #best>h2, #hotReview, footer{
+    width : 1200px;
+    margin : 0 auto;
+}
+section{
+    margin-bottom : 75px !important;
+    overflow : hidden;
+    padding : 50px 0;
+    clear : both;
+}
+#bbs section, #category section{
+    margin-bottom : 50px !important;
+}
+#index h2{
+    display : inline-block;
+    width : 1000px;
+}
+#index h3{
+    margin-top : 5px;
+}
+#index .book{
+    margin : 10px 0;
+}
+#index .more{
+    float : right;
+}
+.book{
+    float : left;
+}
+.book img{
+    border : 1px solid #ccc;
+}
+#recommend h2~*, #best h2~*{
+    text-align: center;
+}
+#best{
+    width : 100%;
+    overflow : hidden;
+    padding : 90px 0;
+}
+#eventPhoto{
+    width : 100%;
+    height : 400px;
+    float : left;
+    padding : 15px 0 0;
+    position : relative;
+}
+#eventPhoto>.eventPhoto{
+    margin : 0 auto;
+    position : relative;
+    width : 1200px;
+    height : 400px;
+    overflow : hidden;
+}
+#eventPhoto img{
+    width : 1200px;
+    position : absolute;
+    top : 0;
+    left : 0;
+}
+#eventPhoto img:first-child{
+    z-index : 1;
+}
+#eventPhoto img:last-child{
+    z-index : -1;
+}
+#writerContent{
+    overflow : hidden;
+}
+#writerContent .writerIntro{
+    width : 200px;
+    float : left;
+    margin-right : 50px;
+    text-align: center;
+}
+#writerContent .circle{
+    width : 200px;
+    height : 200px;
+    overflow : hidden;
+    margin-bottom : 10px;
+}
+.writerIntro>span{
+    clear : both;
+    margin-top : 5px;
+}
+.circle{
+    border-radius : 50%;
+    position : relative;
+}
+#index .circle .circleBack{
+    line-height : 200px;
+    width : 200px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    position : absolute !important;
+    top : 0;
+    left : 0;
+    display : none;
+    color : white;
+}
+.circle:hover .circleBack{
+    display : block !important;
+}
+#recommend>.book{
+    width : 360px;
+    margin-right : 60px;
+    overflow : hidden;
+}
+#recommend>.book img{
+    width : 358px;
+    height : 510px;
+}
+#recommend>.book:last-child, #best>.bestBook>.book:last-child, #new>.newBook>.book:last-child, #writerContent>.writerIntro:last-child, #otherWriter .circle:last-child, #bookList .book:last-child, .goodsItem:last-child{
+    margin-right : 0 !important;
+}
+#recommend>.book>img~*{
+    text-align : center;
+}
+#best{
+    background : lightgreen;
+}
+#best>.bestBook>.book, #new>.newBook>.book{
+    width : 255px;
+    margin-right : 60px;
+}
+#best>.bestBook>.book img{
+    width : 255px;
+    height : 365px;
+}
+#new{
+    overflow : hidden;
+}
+#new>div:first-child{
+    float : left;
+    width : 250px;
+    margin-top : 100px;
+}
+#new h2, #new p{
+    width : 100%;
+}
+#new>.newBook{
+    float : right;
+    width : 900px;
+}
+#new>.newBook>.book{
+    height : 255px;
+    overflow : hidden;
+}
+#new>.newBook>.book img{
+    width : 253px;
+}
+#foreign{
+    overflow : hidden;
+}
+#foreign>span{
+    float : left;
+}
+#foreign>.foreignCover{
+    width : max-content;
+    border : 1px solid #333;
+    height : 426px;
+}
+#foreign>.foreignCover>img{
+    width : 276px;
+    margin : 10px;
+}
+#foreign>.foreign{
+    width : 399px;
+    height : 406px;
+    border : 1px solid #333;
+    padding : 10px 25px;
+    position: relative;
+    margin-left : -1px;
+}
+#foreign>.foreign>h3{
+    border-bottom : 1px solid #333;
+    text-align: center;
+}
+.foreign>p.viewer{
+    position : absolute;
+    bottom : 10px;
+    right : 25px;
+    cursor: pointer;
+}
+
+
+#hotReview{
+    overflow : hidden;
+}
+#hotReview h2{
+    width : 1200px !important;
+}
+#hotReview img{
+    float : left;
+    height : 309px;
+}
+.bookInfo{
+    float : left;
+    margin-left : 15px;
+    padding-top : 20px;
+    font-size : 18px;
+}
+.bookInfo h2{
+    margin-bottom : 0;
+}
+.underLine{
+    position : relative;
+    padding : 20px 0;
+    margin-bottom : 20px;
+}
+.underLine:after{
+    content: '';
+    width : 800px;
+    height : 1px;
+    background : #333;
+    position : absolute;
+    bottom : 0;
+    left : 0;
+}
+
+#lnb{
+    overflow : hidden;
+}
+#bbs #lnb>.lnbBar, #recommendPage #lnb .lnbBar/*, #recommendPage #lnb>.lnbBar*/{
+    float : right;
+    margin-top : 6px;
+}
+#lnb>.lnbBar img{
+    width : 30px;
+}
+.lnbNow{
+    display : inline-block;
+    width : 80px;
+}
+#recommendPage .lnbNow:nth-child(3){
+    text-align: center;
+}
+#lnb>.lnb>li{
+    float : left;
+    border-radius : 10px;
+    width : 148px;
+    background : #d4a373;
+    margin-left : -1px;
+    text-align : center;
+    line-height : 40px;
+    cursor: pointer;
+    margin-right : 20px;
+}
+#lnb .lnb>li:first-child{
+    margin-left : 1px;
+}
+#bbs .lnbSelected, #recommendPage .lnbSelected{
+    background : #78530f !important;
+    color : white;
+}
+.topIcon{
+    float: right;
+    margin-bottom : 10px;
+    overflow : hidden;
+    border-radius : 4px;
+    box-shadow : 2px 2px 5px #999;
+    margin-right : 10px;
+}
+#review>.review{
+    border-radius : 10px;
+    padding : 20px;
+    cursor: pointer;
+    position : relative;
+    border : 1px solid #ccc;
+}
+#review>.review img{
+    height : 409px;
+    width : 280px;
+}
+#review>.review>.book{
+    display : inline-block;
+    width : 300px;
+    text-align : center;
+    overflow : hidden;
+}
+#review>.review>.reviewBody{
+    display : none;
+    clear : both;
+    background : #eee;
+    margin-top : 431px;
+}
+#review>.review>.reviewBody>p, #review>.review>.reviewBody>h3{
+    padding : 20px;
+    color : #999;
+    line-height : 25px;
+}
+.reviewBodySelect{
+    display : block !important;
+}
+.pageN{
+    text-align: center;
+}
+.pageN>a{
+    padding : 10px 10px;
+
+}
+.pageN>.pageNSelect{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.pageN img{
+    margin-top : 3px;
+    height : 20px;
+}
+
+#writerIntroPage #writerIntro{
+    background: #e7cba8;
+    overflow : hidden;
+    padding : 20px;
+    border-radius: 20px;
+}
+#writerIntroPage #writerIntro>*{
+    padding-left : 10px;
+}
+#writerIntroPage #writerIntro img{
+    float : right;
+    margin-right : 10px;
+    border-radius : 0 10px 10px 0;
+}
+#writerIntroPage #writerIntro h2{
+    margin-top : 50px;
+}
+#writerPrize img{
+    float : left;
+    height : 470px;
+}
+#writerPrize img~*{
+    margin-left : 470px;
+}
+#writerPrize li{
+    padding : 5px 0;
+}
+#bookList .book img{
+    width : 253px;
+    height : 385px;
+}
+#bookList .book{
+    margin-right : 60px;
+}
+#interview{
+    position: relative;
+}
+#interview img{
+    float : right;
+    margin-bottom : 20px;
+}
+#interview p{
+    clear : both;
+    margin-bottom : 20px;
+}
+#interview .title{
+    position : absolute;
+    top : 280px;
+    left : 300px;
+}
+.interview{
+    background : url('../images/talkBubble.png')no-repeat 0 0;
+    overflow : hidden;
+}
+#interview>div.section{
+    padding : 20px 0;
+    margin-bottom : 20px;
+}
+.interview h3{
+    width: 1200px;
+    height : 96px;
+    line-height : 35px;
+    padding-left : 20px;
+}
+.interview .more{
+    float : right;
+    cursor: pointer;
+    margin-right : 50px;
+}
+.interview .interviewBody{
+    margin-top : 20px;
+    display : none;
+}
+
+#writerIntroPage .circle{
+    float : left;
+    overflow : hidden;
+    width : 255px;
+    height : 255px;
+    margin-right : 60px;
+}
+#writerIntroPage .circle .circleBack{
+    line-height : 255px;
+    width : 255px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    position : absolute !important;
+    top : 0;
+    left : 0;
+    display : none;
+    color : white;
+}
+#writerIntroPage .circle:hover .circleBack{
+    display : block;
+}
+
+.gray{
+    color : #999;
+}
+#sideContent{
+    padding-top : 0;
+    width : 250px;
+    float : left;
+}
+.snb>li{
+    cursor: pointer;
+    padding : 20px 0;
+}
+.snbSelected{
+    color : #19662d;
+    font-weight: bold;
+}
+#recommendPage #mainContent{
+    width : 950px;
+    float : left;
+}
+.productCard{
+    width : 440px;
+    padding : 15px;
+    background : #e6e6e6;
+    margin-bottom : 50px;
+    border-radius: 20px;
+}
+.productCard:nth-child(even){
+    float : right;
+}
+.productCard:nth-child(odd){
+    float : left;
+}
+.productCard .book img{
+    width : 188px;
+    height : 308px;
+    margin-right : 20px;
+    border-radius: 10px 0 0 10px;
+}
+.productCard h3~*{
+    margin-bottom : 10px;
+}
+.productCard h3{
+    text-align: center;
+    padding : 0 0 15px;
+}
+.productCard .cardDescription{
+    height : 100px;
+    font-size : 14px;
+}
+.btnP{
+    width: 100px;
+    height: 30px;
+}
+.cartBtn{
+    border: none;
+    border-radius: 5px;
+    background-color: #aa090e;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-top: 25px;
+    margin-right:8px;
+    cursor: pointer;
+}
+.buyBtn{
+    border: none;
+    border-radius: 5px;
+    background-color: #db6f20;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#foreignPopup h2{
+    margin-top : 10px;
+    text-align : center;
+}
+#foreignPopup #foreign{
+    margin : 10px auto 0;
+    display: flex;
+    width : max-content;
+}
+#foreignBefore{
+    box-shadow : 0 5px 10px #999;
+    z-index : 1;
+}
+#foreignAfter, #foreignBefore{
+    height : 700px;
+    width: 540px;
+    border: 1px solid #999;
+    position : relative;
+    overflow : hidden;
+}
+#foreignAfter{
+    margin-left : -1px;
+}
+.backBtn{
+    width: 52px;
+    left : -1px;
+    cursor: pointer;
+    position : absolute;
+    bottom : 0;
+}
+#foreignSidebar>button{
+    width : 150px;
+    height : 54px;
+    border : none;
+    margin : 15px 0 0 0;
+    cursor: pointer;
+    text-align: left;
+    text-indent : 20px;
+}
+.toggleOn{
+    background : #666;
+    color : white;
+}
+.transSize{
+    position :absolute;
+    right : 0;
+    bottom : 170px;
+    display : none;
+}
+.transSize>li{
+    margin : 0 5px;
+    cursor: pointer;
+    line-height : 28px;
+}
+.sizeSelected{
+    font-weight: bold;
+}
+.foreignText, .krText{
+    padding: 20px 60px;
+    height : 100%;
+}
+#foreignSidebar{
+    width:150px;
+    position : relative;
+}
+.draged{
+    position : fixed;
+    font-size : 1.5em;
+    padding : 10px;
+    border-radius : 10px;
+    background : white;
+    border : 1px solid #333;
+    width : max-content;
+    z-index : 100;
+}
+.nightMod{
+    color : white;
+    background : #333;
+}
+.dayMod{
+    color : #333;
+    background : white;
+}
+#foreignAfter>.foreignText{
+    display : none;
+}
+#write>form>.writePro{
+    overflow:hidden;
+    margin-bottom : 20px;
+    line-height : 50px;
+}
+.writePro>img{
+    float:left;
+    width:120px;
+    height:170px;
+    margin-right:10px; 
+}
+#bbsWrite form>button{
+    cursor : pointer;
+    width : 100px;
+    height : 30px;
+    background: white;
+    border : 1px solid #a77523;
+    color : #a77523;
+    margin : 0 490px 30px;
+}
+.writePage{
+    padding : 20px 0;
+    position: relative;
+}
+.writePage>*{
+    border : none;
+    resize : none;
+    outline-style : none;
+}
+.writePage>input{
+    font-size: 22px;
+    border-bottom: 1px solid #ccc;
+    width : 100%;
+    padding-bottom : 10px;
+}
+.writePage>textarea{
+    width : 100%;
+    height : 250px;
+    margin-top : 20px;
+    line-height : 40px;
+}
+#write>form .buttonBar{
+    float : right;
+}
+.buttonBar>button:last-child{
+    border:1px solid #a77523;
+    color:#a77523;
+}
+.buttonBar>button{
+    width: 80px;
+    height: 30px;
+    background: none;
+    margin:0 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.noteLine{
+    width : 100%;
+    height : 0px;
+    border-bottom : 1px solid #dcdcdc;
+    position : absolute;
+    left : 0;
+}
+#bbsWrite article{
+    padding-top : 45px;
+    width : 1080px;
+}
+
+
+
+
+
+
+#bookInfo h3{
+    width : 255px;
+    text-overflow : ellipsis;
+    overflow: hidden;
+    white-space : nowrap;
+}
+.purchaseButtons button{
+    width : 125px;
+    height : 50px;
+    margin : 10px 5px 0;
+}
+.moreBooks{
+    float : left;
+}
+.moreBooks>* {
+    float: left;
+    height : 182px;
+    width : 115px;
+    text-align: center;
+    margin-left : 40px;
+}
+.moreBooksPlus>a{
+    display : inline-block;
+    line-height : 60px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    margin-top : 60px;
+    cursor: pointer;
+}
+.productImage{
+    width:500px;
+    height:600px;
+    background:#eee;
+    float:left;
+    text-align:center;
+    padding : 50px;
+}
+.productInfo{
+    width:440px;
+    height:600px;
+    float:right;
+    padding : 0 50px;
+}
+.infoText{
+    height:130px;
+}
+.bold{
+    display:inline-block;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+.infoTitle{
+    display:inline-block; 
+    margin-bottom:10px;
+    width:110px;
+}
+.quantity{
+    margin:20px 0 30px;
+}
+.purchaseButtons, .purchaseButtonsLong{
+    text-align:center;
+}
+
+.goodsItem{
+    float:left;margin-right:60px;
+    text-align: center;
+}
+.goodsItem img{
+    margin-bottom:15px; 
+    width:253px; 
+    height:370px;
+}
+#layout1{
+    width:800px;
+    float:left;
+}
+.productIntro, .productInfoDetail, .productAuthor{
+    padding-bottom:50px; 
+    margin-bottom:35px !important;
+    border-bottom:1px solid #999;
+    font-size: 18px;
+}
+.productInfoDetail span{
+    display:inline-block; 
+    width:250px;
+}
+/*품목정보*/
+.productAuthor span{
+    line-height:200px;
+    font-weight:bold;
+    margin-left : 15px;
+}
+.productAuthor img{
+    margin-bottom:15px;
+}
+.review{
+    overflow:hidden;
+    margin-bottom:50px;
+}
+.review>img{
+    width:70px;
+    float:left;
+    margin-right:10px;
+}
+.hidden{
+    display:none;
+}
+#bookInfo #reviews button{
+    width:125px; 
+    height:50px;
+    color:#999; 
+    background: white;
+    border:1px solid #999;
+    border-radius:15px;
+    cursor: pointer;
+    font-size : 16px;
+}
+#followingMenu .quantity{
+    margin:15px 0 0;
+    text-align: center;
+}
+#followingMenu .quantity .price{
+    width : 151px;
+    margin-top : 3px;
+}
+.quantity button{
+    width:25px;
+    height:25px;
+}
+.purchaseButtonsLong button{
+    width:240px;
+    height:40px;
+    margin:20px 0 0;
+}
+#followingWrapper{
+    float : right;
+    width : 300px;
+    height : 2128px;
+    position : relative;
+}
+#followingMenu{
+    padding:30px 20px 20px;
+    width:260px;
+    position : absolute;
+    border : 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #ccc;;
+    right : 0;
+    top : 0;
+}
+#followingMenu img{
+    padding-right:20px;
+    float : left;
+}
+#followingMenu h3{
+    display : inline-block;
+    width : max-content;
+    margin-top : 20px;
+}
+.followingMenuBorder{
+    height:125px;
+    border-bottom:1px solid black;
+    overflow : hidden;
+}
+.number{
+    display : inline-block;
+    width : 40px;
+    text-align: center;
+}
+.price{
+    display : inline-block;
+    width : 100px;
+    padding : 0 5px;
+    text-align : right;
+}
+
+#category .lnbNow{
+    width : max-content;
+
+}
+#categoryBox {
+    padding : 30px 0 30px 30px;
+    width : 1018px;
+    overflow : hidden;
+    margin: 0 auto 90px;
+    border-radius: 10px;
+    background : #eee;
+}
+#categoryBox ul li {
+    float: left;
+    width: 203px;
+    text-indent: 30px;
+}
+#categoryBox a{
+    display : block;
+    padding : 6px 0;
+    height: 33px;
+    line-height: 33px;
+    margin-left: 10px;
+}
+#categoryBox ul li a:hover {
+    text-decoration: underline;
+}
+#categoryBox .lnbSelected {
+    color: #114e27;
+    font-weight: bold;
+}
+.bookSection {
+    overflow: hidden;
+}
+.recommendBookMain {
+    float: left;
+    width: 150px;
+}
+.description {
+    float: left;
+    width: 450px;
+}
+.bookSectionInfo {
+    width : 910px;
+    height: 150px;
+    border-bottom: 1px solid #39b057;
+    padding : 10px 0;
+    margin-bottom: 20px;
+    float : left;
+}
+.sectionButtons {
+    float: right;
+}
+.moreBooks {
+    height: 182px;
+}
+.moreBooks>* {
+    float: left;
+    height : 182px;
+    width : 115px;
+    text-align: center;
+    margin-left : 40px;
+}
+.moreBooks img{
+    width:115px;
+    height:182px;
+}
+.moreBooksPlus>a{
+    display : inline-block;
+    line-height : 60px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    margin-top : 60px;
+}
+.goToProduct{
+    width:248px;
+    height:383px;
+    float: left;
+    margin-right: 40px;
+    border : 1px solid #333;
+}
