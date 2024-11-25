@@ -480,21 +480,19 @@ section{
 #foreign{
     overflow : hidden;
 }
-#foreign>span{
+#foreign>div{
     float : left;
 }
 #foreign>.foreignCover{
     width : max-content;
     border : 1px solid #333;
     height : 426px;
-    float : left;
 }
 #foreign>.foreignCover>img{
     width : 276px;
     margin : 10px;
 }
 #foreign>.foreign{
-    float : left;
     width : 399px;
     height : 406px;
     border : 1px solid #333;
