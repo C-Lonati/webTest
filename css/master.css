@@ -325,6 +325,7 @@ footer>.footerInfo>span{
 #index>#content{
     width : 100% !important;
     padding-top : 0px !important;
+    min-width : 1400px;
 }
 #recommend, #new, #foreign, #writerContent, .bestBook, #best>h2, #hotReview, footer{
     width : 1200px;
@@ -367,9 +368,9 @@ section{
     padding : 90px 0;
 }
 #eventPhoto{
-    width : 100%;
+    width : 1400px;
     height : 400px;
-    float : left;
+    margin : 0 auto;
     padding : 15px 0 0;
     position : relative;
 }

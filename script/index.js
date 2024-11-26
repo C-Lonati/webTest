@@ -3,7 +3,7 @@ const photoBack = document.getElementById('eventPhoto');
 const photo = document.querySelectorAll('.eventPhoto>img');
 let leftBtn = document.createElement('div');
 let rightBtn = document.createElement('div');
-let dis = '250px';
+let dis = '0px';
 let photoNum=0, photoNumMax = photo.length-1;
 viewer[0].addEventListener('click', ()=>{
     window.open('foreign.html', 'bookPage', 'width = 1400px, height = 850px, scrollbars=no location = no, toolbar = no, statusbar = no'); 
