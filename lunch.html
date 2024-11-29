@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>점메추</title>
+  <style>
+    #lunch, #list{
+      height : 30px;
+      line-height : 30px;
+    }
+  </style>
+</head>
+<body>
+  <p>메뉴를 하나씩 입력해 주세요</p>
+  <input type="text" id="inputList" placeholder="메뉴"></input>
+  <div id="list">
+    현재 메뉴 목록 : 
+  </div>
+  <button id="btnAdd">메뉴추가</button>
+  <div id="lunch">
+    메뉴
+  </div>
+  <button id="btn">메뉴추천</button>
+  <script>
+    const lunch=document.getElementById('lunch');
+    const btn=document.getElementById('btn');
+    const btn_add=document.getElementById('btnAdd');
+    const lunch_list=document.getElementById('list');
+    const input_list=document.getElementById('inputList');
+    var menuList = new Array();
+    var i=0;
+    btn_add.addEventListener('click', ()=>{
+      lunch_list.innerText = lunch_list.innerText + input_list.value + ', ';
+      menuList[i] = input_list.value;
+      i++;
+      input_list.value = '';
+    });
+    btn.addEventListener('click', ()=>{
+      if(!menuList[0]) {
+        alert('메뉴를 먼저 입력해주세요.');
+        location.reload(true);
+      }
+      let list = Math.floor(Math.random()*menuList.length);
+      lunch.innerText=menuList[list];
+    });
+  </script>
+</body>
+</html>
