@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+        label{
+            display : inline-block;
+            width : 120px;
+        }
+        p{
+            margin-bottom : 20px;
+        }
+        #output{
+            padding : 50px;
+            background : #ccc;
+        }
+    </style>
+</head>
+<body>
+    <p><label>max-width</label><input type="number" id="maxWidth"></p>
+    <p><label>cols</label><input type="number" id="cols"></p>
+    <p><label>colWidth</label><input type="number" id="colWidth"></p>
+    <p><label>gutter</label><input type="number" id="gutter"></p>
+    <button id="col">col</button>
+    <button id="prefix">prefix</button>
+    <button id="suffix">suffix</button>
+    <div id="output">값</div>
+    <script>
+        const prefix = document.getElementById('prefix');
+        const suffix = document.getElementById('suffix');
+        const col = document.getElementById('col');
+        const output = document.getElementById('output');
+        const maxWdith2 = document.getElementById('maxWidth');
+        const colWidth2 = document.getElementById('colWidth');
+        const gutter2 = document.getElementById('gutter');
+        const cols2 = document.getElementById('cols');
+        function getColsVal(){
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            let cssInner, cssInput;
+            for(i=1;i<=cols;i++){
+                if(i>1)
+                    cssInput = '.rows .col' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*(i-1))*100).toFixed(2) + '%;}';
+                else cssInput = '.rows .col' + i + '{width : ' + ((colWidth/maxWdith*i)*100).toFixed(2) + '%;}';
+                if(cssInner)
+                    cssInner = cssInner + '<br>' + cssInput;
+                else cssInner = cssInput;
+            }
+            output.innerHTML = cssInner;
+        }
+        function getPrefixVal(){
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            let cssInner, cssInput;
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.rows .prefix' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                if(cssInner)
+                    cssInner = cssInner + '<br>' + cssInput;
+                else cssInner = cssInput;
+            }
+            output.innerHTML = cssInner;
+        }
+        function getSuffixVal(){
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            let cssInner, cssInput;
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.rows .suffix' + i + '{width : -' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                if(cssInner)
+                    cssInner = cssInner + '<br>' + cssInput;
+                else cssInner = cssInput;
+            }
+            output.innerHTML = cssInner;
+        }
+        col.addEventListener('click', ()=>{
+            getColsVal();
+        });
+        prefix.addEventListener('click', ()=>{
+            getPrefixVal();
+        });
+        suffix.addEventListener('click', ()=>{
+            getSuffixVal();
+        });
+        
+
+
+
+
+    </script>
+</body>
+</html>
