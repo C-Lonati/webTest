@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
     <style>
+        @font-face {
+            font-family: 'paybooc-Medium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'paybooc-Extrabold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-ExtraBold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'paybooc-Bold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+        }
+        *{
+            margin : 0;
+            padding : 0;
+        }
+        body{
+            margin : 0 auto;
+            font-family: 'paybooc-Bold';
+        }
         label{
             display : inline-block;
             width : 120px;
@@ -12,20 +32,51 @@
         p{
             margin-bottom : 20px;
         }
+        #container{
+            margin : 0 auto;
+            width : 1200px;
+            margin-bottom : 12px;
+        }
         #output{
             padding : 50px;
             background : #ccc;
         }
+        #outputGrid{
+            background : #ababab;
+            height : 300px;
+            margin : 0 auto;
+            width : max-content;
+        }
+        .colMaker{
+            height : 300px;
+            background : #0ea779;
+            float : left;
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+        }
+        .gutterMaker{
+            height : 300px;
+            background : #a06e02;
+            float : left;
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+        }
     </style>
 </head>
 <body>
-    <p><label>max-width</label><input type="number" id="maxWidth"></p>
-    <p><label>cols</label><input type="number" id="cols"></p>
-    <p><label>colWidth</label><input type="number" id="colWidth"></p>
-    <p><label>gutter</label><input type="number" id="gutter"></p>
-    <button id="col">col</button>
-    <button id="prefix">prefix</button>
-    <button id="suffix">suffix</button>
+    <section id="container">
+        <p><label>max-width</label><input type="number" id="maxWidth"></p>
+        <p><label>cols</label><input type="number" id="cols"></p>
+        <p><label>colWidth</label><input type="number" id="colWidth"></p>
+        <p><label>gutter</label><input type="number" id="gutter"></p>
+        <div>
+            <button id="gridBtn">make Grid</button>
+            <button id="col">col</button>
+            <button id="prefix">prefix</button>
+            <button id="suffix">suffix</button>
+        </div>
+    </section>
+    <div id="outputGrid">그리드</div>
     <div id="output">값</div>
     <script>
         const prefix = document.getElementById('prefix');
@@ -36,7 +87,30 @@
         const colWidth2 = document.getElementById('colWidth');
         const gutter2 = document.getElementById('gutter');
         const cols2 = document.getElementById('cols');
-        function getColsVal(){
+        const gridMaker = document.getElementById('gridBtn');
+        const grid = document.getElementById('outputGrid');
+        gridMaker.addEventListener('click', ()=> {
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            grid.innerHTML = '';
+            for(i=0;i<cols;i++){
+                let colMaker = document.createElement('div');
+                let gutterMaker = document.createElement('div');
+                colMaker.classList.add('colMaker');
+                colMaker.style.width = colWidth + 'px';
+                colMaker.innerText = colWidth + 'px';
+                gutterMaker.classList.add('gutterMaker');
+                gutterMaker.style.width = gutter + 'px';
+                gutterMaker.innerText = gutter + 'px';
+                grid.appendChild(colMaker);
+                if(i<cols-1){
+                    grid.appendChild(gutterMaker);
+                }
+            }
+        });
+        col.addEventListener('click', ()=>{
             let cols = Number(cols2.value);
             let gutter = Number(gutter2.value);
             let colWidth = Number(colWidth2.value);
@@ -44,50 +118,55 @@
             let cssInner, cssInput;
             for(i=1;i<=cols;i++){
                 if(i>1)
-                    cssInput = '.rows .col' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*(i-1))*100).toFixed(2) + '%;}';
-                else cssInput = '.rows .col' + i + '{width : ' + ((colWidth/maxWdith*i)*100).toFixed(2) + '%;}';
+                    cssInput = '.row .col' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*(i-1))*100).toFixed(4) + '%;}';
+                else cssInput = '.row .col' + i + '{width : ' + ((colWidth/maxWdith*i)*100).toFixed(2) + '%;}';
                 if(cssInner)
                     cssInner = cssInner + '<br>' + cssInput;
                 else cssInner = cssInput;
             }
-            output.innerHTML = cssInner;
-        }
-        function getPrefixVal(){
-            let cols = Number(cols2.value);
-            let gutter = Number(gutter2.value);
-            let colWidth = Number(colWidth2.value);
-            let maxWdith = Number(maxWdith2.value);
-            let cssInner, cssInput;
-            for(i=1;i<=cols-1;i++){
-                cssInput = '.rows .prefix' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
-                if(cssInner)
-                    cssInner = cssInner + '<br>' + cssInput;
-                else cssInner = cssInput;
+            for(i=1;i<=cols;i++){
+                if(i>1)
+                    cssInput = '.row .col' + i + '{width : ' + (colWidth*i+gutter*(i-1)) + 'px;}';
+                else cssInput = '.row .col' + i + '{width : ' + colWidth*i + 'px;}';
+                cssInner = cssInner + '<br>' + cssInput;
             }
             output.innerHTML = cssInner;
-        }
-        function getSuffixVal(){
-            let cols = Number(cols2.value);
-            let gutter = Number(gutter2.value);
-            let colWidth = Number(colWidth2.value);
-            let maxWdith = Number(maxWdith2.value);
-            let cssInner, cssInput;
-            for(i=1;i<=cols-1;i++){
-                cssInput = '.rows .suffix' + i + '{width : -' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
-                if(cssInner)
-                    cssInner = cssInner + '<br>' + cssInput;
-                else cssInner = cssInput;
-            }
-            output.innerHTML = cssInner;
-        }
-        col.addEventListener('click', ()=>{
-            getColsVal();
         });
         prefix.addEventListener('click', ()=>{
-            getPrefixVal();
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            let cssInner, cssInput;
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.row .prefix' + i + '{padding-left : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                if(cssInner)
+                    cssInner = cssInner + '<br>' + cssInput;
+                else cssInner = cssInput;
+            }
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.row .prefix' + i + '{padding-left : ' + (colWidth*i+gutter*i) + 'px;}';
+                cssInner = cssInner + '<br>' + cssInput;
+            }
+            output.innerHTML = cssInner;
         });
         suffix.addEventListener('click', ()=>{
-            getSuffixVal();
+            let cols = Number(cols2.value);
+            let gutter = Number(gutter2.value);
+            let colWidth = Number(colWidth2.value);
+            let maxWdith = Number(maxWdith2.value);
+            let cssInner, cssInput;
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.row .suffix' + i + '{padding-right : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                if(cssInner)
+                    cssInner = cssInner + '<br>' + cssInput;
+                else cssInner = cssInput;
+            }
+            for(i=1;i<=cols-1;i++){
+                cssInput = '.row .suffix' + i + '{padding-right : ' + (colWidth*i+gutter*i) + 'px;}';
+                cssInner = cssInner + '<br>' + cssInput;
+            }
+            output.innerHTML = cssInner;
         });
         
 
