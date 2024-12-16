@@ -119,7 +119,7 @@
             for(i=1;i<=cols;i++){
                 if(i>1)
                     cssInput = '.row .col' + i + '{width : ' + ((colWidth/maxWdith*i+gutter/maxWdith*(i-1))*100).toFixed(4) + '%;}';
-                else cssInput = '.row .col' + i + '{width : ' + ((colWidth/maxWdith*i)*100).toFixed(2) + '%;}';
+                else cssInput = '.row .col' + i + '{width : ' + ((colWidth/maxWdith*i)*100).toFixed(4) + '%;}';
                 if(cssInner)
                     cssInner = cssInner + '<br>' + cssInput;
                 else cssInner = cssInput;
@@ -139,7 +139,7 @@
             let maxWdith = Number(maxWdith2.value);
             let cssInner, cssInput;
             for(i=1;i<=cols-1;i++){
-                cssInput = '.row .prefix' + i + '{padding-left : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                cssInput = '.row .prefix' + i + '{padding-left : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(4) + '%;}';
                 if(cssInner)
                     cssInner = cssInner + '<br>' + cssInput;
                 else cssInner = cssInput;
@@ -157,7 +157,7 @@
             let maxWdith = Number(maxWdith2.value);
             let cssInner, cssInput;
             for(i=1;i<=cols-1;i++){
-                cssInput = '.row .suffix' + i + '{padding-right : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(2) + '%;}';
+                cssInput = '.row .suffix' + i + '{padding-right : ' + ((colWidth/maxWdith*i+gutter/maxWdith*i)*100).toFixed(4) + '%;}';
                 if(cssInner)
                     cssInner = cssInner + '<br>' + cssInput;
                 else cssInner = cssInput;
